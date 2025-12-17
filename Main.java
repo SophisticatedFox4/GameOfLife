@@ -35,7 +35,8 @@ public class Main {
         while (true) {
             System.out.print("How many steps? ");
             int steps = input.nextInt();
-            if (steps == 0) break;
+            if (steps == 0)
+                break;
             for (int i = 0; i < steps; i++) {
                 step(width, height);
                 try {
@@ -60,7 +61,7 @@ public class Main {
                 continue;
             }
             World.placeBeepers(Integer.parseInt(coords[1]), Integer.parseInt(coords[0]), 1);
-            coordinates.add(new int[] {Integer.parseInt(coords[1]), Integer.parseInt(coords[0])});
+            coordinates.add(new int[] { Integer.parseInt(coords[1]), Integer.parseInt(coords[0]) });
             World.repaint();
             System.out.print("Finished? ");
             confirm = input.nextLine();
@@ -75,16 +76,22 @@ public class Main {
                 int count = 0;
                 for (int k = i - 1; k <= i + 1; k++) {
                     for (int l = j - 1; l <= j + 1; l++) {
-                        if (k == i && l == j) continue;
-                        if (World.checkBeeper(k, l)) count++;
+                        if (k == i && l == j)
+                            continue;
+                        if (World.checkBeeper(l, k))
+                            count++;
                     }
                 }
-                if (count == 3 && !World.checkBeeper(j, i)) adds.add(new int[] {j, i});
-                else if ((count < 2 || count > 3) && World.checkBeeper(j, i)) removals.add(new int[] {j, i});
+                if (count == 3 && !World.checkBeeper(j, i))
+                    adds.add(new int[] { j, i });
+                else if ((count < 2 || count > 3) && World.checkBeeper(j, i))
+                    removals.add(new int[] { j, i });
             }
         }
-        for (int[] coords : adds) World.placeBeepers(coords[0], coords[1], 1);
-        for (int[] coords : removals) World.clearBeepers(coords[0], coords[1]);
+        for (int[] coords : adds)
+            World.placeBeepers(coords[0], coords[1], 1);
+        for (int[] coords : removals)
+            World.clearBeepers(coords[0], coords[1]);
         World.repaint();
     }
 }
